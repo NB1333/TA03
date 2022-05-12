@@ -48,7 +48,7 @@ class LinkedList:
         new_node.next = previous_node.next
         previous_node.next = new_node
 
-    def deletion(self, data):
+    def deleteElement(self, data):
         if self.head is None:
             return
 
@@ -82,17 +82,20 @@ class LinkedList:
 
             temp = None
 
-    def deleteLastElement(self, data):
-        if data is None:
-            return None
-        if data.next is None:
-            data = None
-            return None
-        second_last = data
-        while (second_last.next.next):
-            second_last = second_last.next
-        second_last.next = None
-        return data
+    def deleteLastElement(self):
+        if self.head is not None:
+
+            if self.head.next is None:
+                self.head = None
+            else:
+
+                temp = self.head
+                while temp.next.next is not None:
+                    temp = temp.next
+
+                lastNode = temp.next
+                temp.next = None
+                lastNode = None
 
     def print(self):
         temp = self.head
@@ -107,50 +110,183 @@ class LinkedList:
             temp = None
 
 
+class DoublyLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.count = 0
+        self.next = None
+        self.previous = None
+
+    def beginAdd(self, new_data):
+
+        new_node = Node(new_data)
+
+        new_node.next = self.head
+
+        if self.head is not None:
+            self.head.prev = new_node
+
+        self.head = new_node
+
+    def endAdd(self, new_data):
+
+        new_node = Node(new_data)
+
+        if self.head is None:
+            self.head = new_node
+            return
+
+        temp = self.head
+
+        while temp.next:
+            temp = temp.next
+
+        temp.next = new_node
+
+        new_node.prev = temp
+
+        return
+
+    def insertAfterIndex(self, previous_node, new_data):
+        if previous_node is None:
+            print("previous node cannot be null")
+            return
+
+        new_node = Node(new_data)
+
+        new_node.next = previous_node.next
+
+        previous_node.next = new_node
+
+        new_node.prev = previous_node
+
+        if new_node.next:
+            new_node.next.prev = new_node
+
+    def deleteElement(self, data):
+        if data == 0:
+            self.head = self.head.next
+            self.head.previous = None
+            self.count -= 1
+            return
+
+        if data == (self.count - 1):
+            self.tail = self.tail.previous
+            self.tail.next = None
+            self.count -= 1
+            return
+
+        start = self.head
+        for i in range(data):
+            start = start.next
+#        start.previous.next, start.next.previous = start.next, start.previous
+        self.count -= 1
+        return
+
+    def deleteFirstElement(self):
+        if self.head is not None:
+
+            temp = self.head
+
+            self.head = self.head.next
+
+            temp = None
+
+            if self.head is not None:
+                self.head.prev = None
+
+    def deleteLastElement(self):
+        if self.head is not None:
+
+            if self.head.next is None:
+                self.head = None
+            else:
+                temp = self.head
+                while temp.next.next is not None:
+                    temp = temp.next
+
+                lastNode = temp.next
+                temp.next = None
+                lastNode = None
+
+    def find(self, data):
+        start = self.head
+        for i in range(self.count):
+            if (start.data == data):
+                return i
+            start = start.next
+        return None
+
+    def print(self):
+        current = self.head
+
+        while current != None:
+            print(current.data),
+            current = current.next
+
+    def clear(self):
+        while self.head != None:
+            temp = self.head
+            self.head = self.head.next
+            temp = None
+
+
+def operations(listType):
+    start_time1 = datetime.now()
+    for i in range(Range):
+        listType.beginAdd(randint(10, 8000))
+    print('Insert time at the begin: ' + str(datetime.now() - start_time1) + newString)
+
+    listType.clear()
+
+    start_time2 = datetime.now()
+    for i in range(Range):
+        listType.endAdd(randint(10, 8000))
+    print('Insert time at the end: ' + str(datetime.now() - start_time2) + newString)
+
+    listType.clear()
+    listType.beginAdd(12)
+    listType.beginAdd(2)
+
+    start_time3 = datetime.now()
+    for i in range(Range):
+        listType.insertAfterIndex(listType.head.next, randint(10, 8000))
+    print('Insert time after index: ' + str(datetime.now() - start_time3) + newString)
+
+#    listType.print()
+
+    start_time4 = datetime.now()
+    listType.deleteFirstElement()
+    print('\n\nDeletion time of the first element: ' + str(datetime.now() - start_time4) + newString)
+
+#    listType.print()
+
+    start_time5 = datetime.now()
+    listType.deleteLastElement()
+    print('\nDeletion time of the last element: ' + str(datetime.now() - start_time5) + newString)
+
+#   listType.print()
+
+    start_time6 = datetime.now()
+    listType.deleteElement(3)
+    print('\nDeletion time after index: ' + str(datetime.now() - start_time6) + newString)
+
+#    listType.print()
+
+    start_time7 = datetime.now()
+    listType.find(1337)
+    print('\nFinding time: ' + str(datetime.now() - start_time7) + newString)
+
+
 if __name__ == '__main__':
     newString = '\n'
     Range = 1000
     start_time = datetime.now()
 
     llist = LinkedList()
-
-    start_time1 = datetime.now()
-    for i in range(Range):
-        llist.beginAdd(randint(10, 8000))
-    print('Insert time at the begin: ' + str(datetime.now() - start_time1) + newString)
-
-    llist.clear()
-
-    start_time2 = datetime.now()
-    for i in range(Range):
-        llist.endAdd(randint(10, 8000))
-    print('Insert time at the end: ' + str(datetime.now() - start_time2) + newString)
-
-    llist.clear()
-    llist.beginAdd(12)
-    llist.beginAdd(2)
-
-    start_time3 = datetime.now()
-    for i in range(Range):
-        llist.insertAfterIndex(llist.head.next, randint(10, 8000))
-    print('Insert time after index: ' + str(datetime.now() - start_time3) + newString)
-
-    llist.print()
-
-    start_time4 = datetime.now()
-    llist.deleteFirstElement()
-    print('\n\nDeletion time of the first element: ' + str(datetime.now() - start_time4) + newString)
-    llist.print()
-    head = llist.endAdd(1337)
-
-    start_time5 = datetime.now()
-    llist.deleteLastElement(head)
-    print('\nDeletion time of the last element: ' + str(datetime.now() - start_time5) + newString)
-    llist.print()
-    start_time6 = datetime.now()
-    llist.deletion(3)
-    print('\nDeletion time after index: ' + str(datetime.now() - start_time6) + newString)
-    llist.print()
-    start_time7 = datetime.now()
-    llist.find(1337)
-    print('Finding time: ' + str(datetime.now() - start_time7) + newString)
+    dllist = DoublyLinkedList()
+    print("Linked List\n")
+    operations(llist)
+    print("\nDoubly Linked List\n")
+    operations(dllist)
