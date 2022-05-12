@@ -180,7 +180,7 @@ class DoublyLinkedList:
         start = self.head
         for i in range(data):
             start = start.next
-#        start.previous.next, start.next.previous = start.next, start.previous
+        #        start.previous.next, start.next.previous = start.next, start.previous
         self.count -= 1
         return
 
@@ -254,25 +254,25 @@ def operations(listType):
         listType.insertAfterIndex(listType.head.next, randint(10, 8000))
     print('Insert time after index: ' + str(datetime.now() - start_time3))
 
-#    listType.print()
+    #    listType.print()
 
     start_time4 = datetime.now()
     listType.deleteFirstElement()
     print('\nDeletion time of the first element: ' + str(datetime.now() - start_time4))
 
-#    listType.print()
+    #    listType.print()
 
     start_time5 = datetime.now()
     listType.deleteLastElement()
     print('Deletion time of the last element: ' + str(datetime.now() - start_time5))
 
-#   listType.print()
+    #   listType.print()
 
     start_time6 = datetime.now()
     listType.deleteElement(3)
     print('Deletion time after index: ' + str(datetime.now() - start_time6))
 
-#    listType.print()
+    #    listType.print()
 
     start_time7 = datetime.now()
     listType.find(1337)
@@ -398,10 +398,9 @@ def queueRealisation():
     queue.DeQueue()
 
 
-
 if __name__ == '__main__':
     newString = '\n'
-    Range = 1000
+    Range = 10000
     start_time = datetime.now()
 
     llist = LinkedList()
