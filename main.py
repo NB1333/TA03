@@ -1,5 +1,4 @@
 from datetime import datetime
-import time
 from random import *
 
 
@@ -34,7 +33,7 @@ class LinkedList:
             return
 
         last = self.head
-        while (last.next):
+        while last.next:
             last = last.next
 
         last.next = new_node
@@ -75,7 +74,7 @@ class LinkedList:
         temp.next = next
 
     def deleteFirstElement(self):
-        if self.head != None:
+        if self.head is not None:
             temp = self.head
 
             self.head = self.head.next
@@ -104,7 +103,7 @@ class LinkedList:
             temp = temp.next
 
     def clear(self):
-        while (self.head != None):
+        while self.head is not None:
             temp = self.head
             self.head = self.head.next
             temp = None
@@ -213,7 +212,7 @@ class DoublyLinkedList:
     def find(self, data):
         start = self.head
         for i in range(self.count):
-            if (start.data == data):
+            if start.data == data:
                 return i
             start = start.next
         return None
@@ -221,12 +220,12 @@ class DoublyLinkedList:
     def print(self):
         current = self.head
 
-        while current != None:
+        while current is not None:
             print(current.data),
             current = current.next
 
     def clear(self):
-        while self.head != None:
+        while self.head is not None:
             temp = self.head
             self.head = self.head.next
             temp = None
