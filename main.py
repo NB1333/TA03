@@ -279,6 +279,126 @@ def operations(listType):
     print('\nFinding time: ' + str(datetime.now() - start_time7))
 
 
+class Stack:
+    def __init__(self):
+        self.head = None
+
+    def push(self, data):
+        if self.head is None:
+            self.head = Node(data)
+
+        else:
+            newNode = Node(data)
+            newNode.next = self.head
+            self.head = newNode
+
+    def pop(self):
+        if self.head is None:
+            return None
+
+        else:
+            popNode = self.head
+            self.head = self.head.next
+            popNode.next = None
+            return popNode.data
+
+    def peek(self):
+        if self.head is None:
+            return None
+        else:
+            return self.head.data
+
+    def print(self):
+        iterationNode = self.head
+
+        if self.head is None:
+            print("Stack Underflow")
+        else:
+            while iterationNode is not None:
+                print(iterationNode.data, end=" ")
+                iterationNode = iterationNode.next
+            return
+
+
+class Queue:
+    def __init__(self):
+        self.first = self.last = None
+
+    def EnQueue(self, item):
+        temp = Node(item)
+
+        if self.last is None:
+            self.first = self.last = temp
+            return
+        self.last.next = temp
+        self.last = temp
+
+    def DeQueue(self):
+        if self.first is None:
+            print('Queue is empty')
+            return
+        temp = self.first
+        self.first = temp.next
+
+        if self.first is None:
+            self.last = None
+
+    def printFirstElement(self):
+        print('First element is: ' + str(self.first.data))
+
+    def printLastElement(self):
+        print('Last element is: ' + str(self.last.data))
+
+
+def stackRealisation():
+    print('\nThis is a stack that uses a linked list:')
+
+    stack = Stack()
+
+    stack.push(13)
+    stack.push(15)
+    stack.push(11)
+    stack.push(12)
+    stack.push(10)
+
+    stack.print()
+
+    stack.pop()
+
+    print('\nTop element of stack is ' + str(stack.peek()))
+
+    stack.print()
+
+
+def queueRealisation():
+    print('\n\nThis is a queue that uses a linked list:')
+
+    queue = Queue()
+
+    queue.EnQueue(13)
+    queue.EnQueue(31)
+    queue.EnQueue(59)
+    queue.EnQueue(51)
+    queue.EnQueue(64)
+    queue.EnQueue(32)
+
+    queue.printFirstElement()
+    queue.printLastElement()
+
+    queue.DeQueue()
+    queue.DeQueue()
+    queue.DeQueue()
+    queue.DeQueue()
+    queue.DeQueue()
+
+    queue.printFirstElement()
+    queue.printLastElement()
+
+    queue.DeQueue()
+    queue.DeQueue()
+
+
+
 if __name__ == '__main__':
     newString = '\n'
     Range = 1000
@@ -290,3 +410,6 @@ if __name__ == '__main__':
     operations(llist)
     print("\n----------------Doubly Linked List----------------\n")
     operations(dllist)
+
+    stackRealisation()
+    queueRealisation()
