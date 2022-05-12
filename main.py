@@ -236,14 +236,14 @@ def operations(listType):
     start_time1 = datetime.now()
     for i in range(Range):
         listType.beginAdd(randint(10, 8000))
-    print('Insert time at the begin: ' + str(datetime.now() - start_time1) + newString)
+    print('Insert time at the begin: ' + str(datetime.now() - start_time1))
 
     listType.clear()
 
     start_time2 = datetime.now()
     for i in range(Range):
         listType.endAdd(randint(10, 8000))
-    print('Insert time at the end: ' + str(datetime.now() - start_time2) + newString)
+    print('Insert time at the end: ' + str(datetime.now() - start_time2))
 
     listType.clear()
     listType.beginAdd(12)
@@ -252,31 +252,31 @@ def operations(listType):
     start_time3 = datetime.now()
     for i in range(Range):
         listType.insertAfterIndex(listType.head.next, randint(10, 8000))
-    print('Insert time after index: ' + str(datetime.now() - start_time3) + newString)
+    print('Insert time after index: ' + str(datetime.now() - start_time3))
 
 #    listType.print()
 
     start_time4 = datetime.now()
     listType.deleteFirstElement()
-    print('\n\nDeletion time of the first element: ' + str(datetime.now() - start_time4) + newString)
+    print('\nDeletion time of the first element: ' + str(datetime.now() - start_time4))
 
 #    listType.print()
 
     start_time5 = datetime.now()
     listType.deleteLastElement()
-    print('\nDeletion time of the last element: ' + str(datetime.now() - start_time5) + newString)
+    print('Deletion time of the last element: ' + str(datetime.now() - start_time5))
 
 #   listType.print()
 
     start_time6 = datetime.now()
     listType.deleteElement(3)
-    print('\nDeletion time after index: ' + str(datetime.now() - start_time6) + newString)
+    print('Deletion time after index: ' + str(datetime.now() - start_time6))
 
 #    listType.print()
 
     start_time7 = datetime.now()
     listType.find(1337)
-    print('\nFinding time: ' + str(datetime.now() - start_time7) + newString)
+    print('\nFinding time: ' + str(datetime.now() - start_time7))
 
 
 if __name__ == '__main__':
@@ -286,7 +286,7 @@ if __name__ == '__main__':
 
     llist = LinkedList()
     dllist = DoublyLinkedList()
-    print("Linked List\n")
+    print("-------------------Linked List--------------------\n")
     operations(llist)
-    print("\nDoubly Linked List\n")
+    print("\n----------------Doubly Linked List----------------\n")
     operations(dllist)
