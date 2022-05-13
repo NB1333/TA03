@@ -379,9 +379,7 @@ def queueRealisation():
 
 
 if __name__ == '__main__':
-    newString = '\n'
-    Range = 20000
-    start_time = datetime.now()
+    Range = 1000
 
     llist = LinkedList()
     dllist = DoublyLinkedList()
