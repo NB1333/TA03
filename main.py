@@ -124,28 +124,22 @@ class DoublyLinkedList:
         new_node.next = self.head
 
         if self.head is not None:
-            self.head.prev = new_node
+            self.head.previous = new_node
 
         self.head = new_node
 
     def endAdd(self, new_data):
-
         new_node = Node(new_data)
+        new_node.prev = self.tail
 
-        if self.head is None:
+        if self.tail is None:
             self.head = new_node
-            return
-
-        temp = self.head
-
-        while temp.next:
-            temp = temp.next
-
-        temp.next = new_node
-
-        new_node.prev = temp
-
-        return
+            self.tail = new_node
+            new_node.next = None
+        else:
+            self.tail.next = new_node
+            new_node.next = None
+            self.tail = new_node
 
     def insertAfterIndex(self, previous_node, new_data):
         if previous_node is None:
@@ -192,7 +186,7 @@ class DoublyLinkedList:
             temp = None
 
             if self.head is not None:
-                self.head.prev = None
+                self.head.previous = None
 
     def deleteLastElement(self):
         if self.head is not None:
@@ -386,7 +380,7 @@ def queueRealisation():
 
 if __name__ == '__main__':
     newString = '\n'
-    Range = 10000
+    Range = 20000
     start_time = datetime.now()
 
     llist = LinkedList()
