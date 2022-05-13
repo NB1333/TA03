@@ -179,7 +179,6 @@ class DoublyLinkedList:
         start = self.head
         for i in range(data):
             start = start.next
-        #        start.previous.next, start.next.previous = start.next, start.previous
         self.count -= 1
         return
 
@@ -253,25 +252,17 @@ def operations(listType):
         listType.insertAfterIndex(listType.head.next, randint(10, 8000))
     print('Insert time after index: ' + str(datetime.now() - start_time3))
 
-    #    listType.print()
-
     start_time4 = datetime.now()
     listType.deleteFirstElement()
     print('\nDeletion time of the first element: ' + str(datetime.now() - start_time4))
-
-    #    listType.print()
 
     start_time5 = datetime.now()
     listType.deleteLastElement()
     print('Deletion time of the last element: ' + str(datetime.now() - start_time5))
 
-    #   listType.print()
-
     start_time6 = datetime.now()
     listType.deleteElement(3)
     print('Deletion time after index: ' + str(datetime.now() - start_time6))
-
-    #    listType.print()
 
     start_time7 = datetime.now()
     listType.find(1337)
@@ -323,6 +314,14 @@ class Queue:
     def __init__(self):
         self.first = self.last = None
 
+    def size(self):
+        temp = self.first
+        count = 0
+        while temp is not None:
+            count = count + 1
+            temp = temp.next
+        return count
+
     def EnQueue(self, item):
         temp = Node(item)
 
@@ -351,50 +350,38 @@ class Queue:
 
 def stackRealisation():
     print('\nThis is a stack that uses a linked list:')
+    stackRange = int(input('Input size of stack: '))
 
     stack = Stack()
 
-    stack.push(13)
-    stack.push(15)
-    stack.push(11)
-    stack.push(12)
-    stack.push(10)
+    for i in range(stackRange):
+        stack.push(randint(10, 100))
 
     stack.print()
 
     stack.pop()
 
-    print('\nTop element of stack is ' + str(stack.peek()))
+    print('\nTop element of stack after pop() is ' + str(stack.peek()))
 
     stack.print()
 
 
 def queueRealisation():
     print('\n\nThis is a queue that uses a linked list:')
+    queueRange = int(input('Input size of queue: '))
 
     queue = Queue()
 
-    queue.EnQueue(13)
-    queue.EnQueue(31)
-    queue.EnQueue(59)
-    queue.EnQueue(51)
-    queue.EnQueue(64)
-    queue.EnQueue(32)
+    for i in range(queueRange):
+        queue.EnQueue(randint(10, 100))
+
+    print('\nQueue size is: ' + str(queue.size()))
 
     queue.printFirstElement()
     queue.printLastElement()
 
-    queue.DeQueue()
-    queue.DeQueue()
-    queue.DeQueue()
-    queue.DeQueue()
-    queue.DeQueue()
-
-    queue.printFirstElement()
-    queue.printLastElement()
-
-    queue.DeQueue()
-    queue.DeQueue()
+    for i in range(queueRange + 1):
+        queue.DeQueue()
 
 
 if __name__ == '__main__':
